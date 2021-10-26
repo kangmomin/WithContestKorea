@@ -1,5 +1,5 @@
 const app = require('express').Router()
-const mysqli = require('./conn')
+const mysqli = require('../admin/conn')
 
 app.put('*', async (req, res) => {
     const data = req.body.data
