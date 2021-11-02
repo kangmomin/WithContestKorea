@@ -1,4 +1,4 @@
-const app = require('express')()
+const app = require('express').Router()
 const mysqli = require('../admin/conn')
 
 app.get('*', async (req, res) => {
@@ -24,15 +24,11 @@ app.get('*', async (req, res) => {
             errMessage = "please check the readme again about page"
         }
         
-        throwErr(res, errCode, errMessage)
+        res.status(errData.status).json({
+            message: errData.message
+        })
     }
 })
-
-function throwErr(res, errData) {
-    res.status(errData.status).json({
-        message: errData.message
-    })
-}
 
 async function getData(page) {
     return new Promise ((resolve, reject) => {
